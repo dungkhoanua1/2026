@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/privacy-center",    "destination": "/privacy-center.html"    },
+    { "source": "/:path((?!.*\\.).*)",         "destination": "/dashboard.html"    }
+  ]
+}
